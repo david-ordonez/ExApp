@@ -5,14 +5,14 @@ import './App.css';
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <div class="task-dashboard_col">
+      <div className="task-dashboard_box">
+        <div className="task-dashboard_col">
           <TodoList/>
         </div>
-        <div class="task-dashboard_col">
+        <div className="task-dashboard_col">
           <TodoList/>
         </div>
-        <div class="task-dashboard_col">
+        <div className="task-dashboard_col">
           <TodoList/>
         </div>
       </div>

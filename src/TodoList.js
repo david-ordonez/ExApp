@@ -37,8 +37,8 @@ export default class TodoList extends Component {
                     <TodoItems entries={this.state.items}/>
                 </div>
                 <div>
-                    <input placeholder="Enter Task here" ref={(a) => this._inputElement = a}></input>
-                    <button type="submit">Add</button>
+                    <input className="task-card_input-box" placeholder="Enter Task here" ref={(a) => this._inputElement = a}></input>
+                    <button className="buttonPrimary"  type="submit">Add</button>
                 </div>
             </form>
         );

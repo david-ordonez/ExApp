@@ -1,0 +1,6 @@
+.task-card {
+	padding: 12px;
+	background:  #fff;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px -2px rgba(0, 0, 0, .25)
+}
