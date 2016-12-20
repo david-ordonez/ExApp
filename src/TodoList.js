@@ -1,47 +1,45 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import TodoItems from './TodoItems.js'
 
-
-
-class TodoList extends Component{
-    constructor(props){
-        super(props);        
+export default class TodoList extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
             items: []
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this
+            .handleSubmit
+            .bind(this);
     }
 
-    handleSubmit(event){
-	var itemArray = this.state.items;
+    handleSubmit(event) {
+        var itemArray = this.state.items;
 
-   	itemArray.push({
-		text : this._inputElement.value,
-		key : Date.now()
-	});
+        if(this._inputElement.value === "")
+            return false;
 
-	this.setState({
-		items : itemArray
-	});
+        itemArray.push({
+            text: this._inputElement.value,
+            key: Date.now()
+        });
 
-	this._inputElement.value = "";	
-    event.preventDefault();
+        this.setState({items: itemArray});
+
+        this._inputElement.value = "";
+        event.preventDefault();
     }
 
-    render(){
-        return(
-            <form onSubmit= { this.handleSubmit }>
-            <div>
-                <input placeholder="Enter Task here" ref={(a) => this._inputElement = a}>
-                </input>
-                <button type="submit">Add</button>
-            </div>
-            <div>
-                <TodoItems entries={ this.state.items }/>
-            </div>
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <div>
+                    <TodoItems entries={this.state.items}/>
+                </div>
+                <div>
+                    <input placeholder="Enter Task here" ref={(a) => this._inputElement = a}></input>
+                    <button type="submit">Add</button>
+                </div>
             </form>
         );
     }
 }
-
-export default TodoList;
