@@ -33,17 +33,9 @@ export default class TodoList extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div class="">
+                <div>
                     <TodoItems entries={this.state.items}/>
                 </div>
-                <div class="">
-                    <TodoItems entries={this.state.items}/>
-                </div>
-
-                <div class="">
-                    <TodoItems entries={this.state.items}/>
-                </div>
-
                 <div>
                     <input placeholder="Enter Task here" ref={(a) => this._inputElement = a}></input>
                     <button type="submit">Add</button>

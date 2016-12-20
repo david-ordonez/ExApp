@@ -19,3 +19,10 @@ body{
 body, button,input,textarea{
   font-family: sans-serif;
 }
+
+.task-dashboard_col{
+    -webkit-box-flex: 0;
+    -webkit-box-flex: 0 1 30%;
+    -ms-flex: 0 1 30%;
+    flex: 0 1 30%;
+}
