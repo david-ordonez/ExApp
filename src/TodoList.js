@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import TodoItems from './TodoItems.js'
+import React, {Component} from 'react';
+import TodoItems from './TodoItems.js';
+import './TodoList.css';
 
 export default class TodoList extends Component {
     constructor(props) {
@@ -15,9 +16,9 @@ export default class TodoList extends Component {
     handleSubmit(event) {
         var itemArray = this.state.items;
 
-        if(this._inputElement.value === "")
+        if (this._inputElement.value === "") 
             return false;
-
+        
         itemArray.push({
             text: this._inputElement.value,
             key: Date.now()
@@ -32,9 +33,17 @@ export default class TodoList extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div>
+                <div class="">
                     <TodoItems entries={this.state.items}/>
                 </div>
+                <div class="">
+                    <TodoItems entries={this.state.items}/>
+                </div>
+
+                <div class="">
+                    <TodoItems entries={this.state.items}/>
+                </div>
+
                 <div>
                     <input placeholder="Enter Task here" ref={(a) => this._inputElement = a}></input>
                     <button type="submit">Add</button>

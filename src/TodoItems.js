@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-class TodoItems extends Component{
+export default class TodoItems extends Component{
     render(){
         var todoItems = this.props.entries;
         function createTask(item){
@@ -16,5 +16,3 @@ class TodoItems extends Component{
         )
     }
 }
-
-export default TodoItems;
