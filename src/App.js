@@ -7,13 +7,13 @@ export default class App extends Component {
     return (
       <div className="task-dashboard_box">
         <div className="task-dashboard_col">
-          <TodoList/>
+          <TodoList title="ToDo"/>
         </div>
         <div className="task-dashboard_col">
-          <TodoList/>
+          <TodoList title="In Progress"/>
         </div>
         <div className="task-dashboard_col">
-          <TodoList/>
+          <TodoList title="Done"/>
         </div>
       </div>
     );
