@@ -32,18 +32,18 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className="task-list">
-                <h3 className="task-list_header">{this.props.title}</h3>
+            <div className="todo-list">
+                <h3 className="todo-list-header">{this.props.title}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <TodoItems entries={this.state.items}/>
                     </div>
                     <div>
                         <input
-                            className="task-card_input-box"
+                            className="todo-item-textbox"
                             placeholder="Enter Task here"
                             ref={(a) => this._inputElement = a}></input>
-                        <button className="buttonPrimary" type="submit">Add</button>
+                        <button className="buttonAdd" type="submit">Add</button>
                     </div>
                 </form>
             </div>
