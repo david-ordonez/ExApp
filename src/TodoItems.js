@@ -5,7 +5,7 @@ export default class TodoItems extends Component {
     render() {
         var todoItems = this.props.entries;
         function createTask(item) {
-            return <div className="task-card">{item.text}</div>
+            return <div className="task-card" draggable="true">{item.text}</div>
         }
 
         var lstItems = todoItems.map(createTask);
