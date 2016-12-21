@@ -5,6 +5,25 @@ export default class TodoItems extends Component {
     constructor(props) {
         super(props);
         this.onDragStart = this.onDragStart.bind(this);
+        this.allowDrop = this.allowDrop.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+    }
+
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+    onDrop(event) {
+        var data = event.dataTransfer.getData("text");
+        var itemArray = this.state.items;
+
+        itemArray.push({
+            text: data,
+            key: Date.now()
+        });
+
+        this.setState({ items: itemArray });
+        event.preventDefault();
     }
 
     onDragStart(event) {
@@ -28,7 +47,8 @@ export default class TodoItems extends Component {
         }
 
         return (
-            <div>
+            <div onDragOver={this.allowDrop}
+                onDrop={this.onDrop}>
                 {lstItems}
             </div>
         )
