@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import TodoItems from '../TodoItems/TodoItems.js';
 import './TodoList.css';
 
@@ -10,21 +10,23 @@ export default class TodoList extends Component {
             items: []
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this
+            .handleSubmit
+            .bind(this);
     }
 
     handleSubmit(event) {
         var itemArray = this.state.items;
 
-        if (this._inputElement.value === "")
+        if (this._inputElement.value === "") 
             return false;
-
+        
         itemArray.push({
             text: this._inputElement.value,
             key: Date.now()
         });
 
-        this.setState({ items: itemArray });
+        this.setState({items: itemArray});
 
         this._inputElement.value = "";
         event.preventDefault();
@@ -35,16 +37,13 @@ export default class TodoList extends Component {
             <div className="todo-list">
                 <h3 className="todo-list-header">{this.props.title}</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <TodoItems entries={this.state.items} />
-                    </div>
-                    <div>
-                        <input
-                            className="todo-item-textbox"
-                            placeholder="Enter Task here"
-                            ref={(a) => this._inputElement = a}></input>
-                        <button className="buttonAdd" type="submit">Add</button>
-                    </div>
+                    <TodoItems entries={this.state.items}/>
+                    <input
+                        className="todo-item-textbox"
+                        placeholder="Enter Task here"
+                        ref={(a) => this._inputElement = a}></input>
+                    <button className="buttonAdd" type="submit">Add</button>
+
                 </form>
             </div>
         );

@@ -23,6 +23,7 @@ export default class TodoItems extends Component {
         var data = event
             .dataTransfer
             .getData("text");
+
         var itemArray = this.props.entries;
 
         itemArray.push({
@@ -39,6 +40,17 @@ export default class TodoItems extends Component {
         event
             .dataTransfer
             .setData("text", event.target.textContent);
+        
+        var itemArray = this.props.entries;
+        for (var i = 0; i < itemArray.length; i++) {
+            if (itemArray[i].text === event.target.textContent) {
+                itemArray.splice(i,1);
+                break;
+            }
+        }
+
+        this.setState({items: itemArray});
+        event.preventDefault();
     }
 
     render() {
@@ -47,17 +59,22 @@ export default class TodoItems extends Component {
         if (todoItems.length > 0) {
             var lstItems = todoItems.map((item) => {
                 return (
-                        <div className="todo-item" key={item.key} draggable="true" onDragStart={this.onDragStart}>
-                            {item.text}
-                        </div>
+                    <li
+                        key={item.key}
+                        data-key={item.key}
+                        className="todo-item"
+                        draggable="true"
+                        onDragStart={this.onDragStart}>
+                        {item.text}
+                    </li>
                 );
             });
         }
 
         return (
-            <div onDragOver={this.allowDrop} onDrop={this.onDrop}>
+            <ul onDragOver={this.allowDrop} onDrop={this.onDrop}>
                 {lstItems}
-            </div>
+            </ul>
         )
     }
 }
