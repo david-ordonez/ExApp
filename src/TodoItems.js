@@ -15,7 +15,7 @@ export default class TodoItems extends Component {
 
     onDrop(event) {
         var data = event.dataTransfer.getData("text");
-        var itemArray = this.state.items;
+        var itemArray = this.props.entries;
 
         itemArray.push({
             text: data,
