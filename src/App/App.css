@@ -20,14 +20,14 @@ body, button,input,textarea{
   font-family: sans-serif;
 }
 
-.task-dashboard_col{
+.todolist-col{
     -webkit-box-flex: 0;
     -webkit-box-flex: 0 1 30%;
     -ms-flex: 0 1 30%;
     flex: 0 1 30%;
 }
 
-.task-dashboard_box {
+.todolist-container {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
