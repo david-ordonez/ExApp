@@ -7,32 +7,23 @@ export default class TodoItems extends Component {
         this.onDragStart = this
             .onDragStart
             .bind(this);
-        this.allowDrop = this
-            .allowDrop
+
+        this.onDragEnd = this
+            .onDragEnd
             .bind(this);
-        this.onDrop = this
-            .onDrop
-            .bind(this);
+
     }
 
-    allowDrop(event) {
-        event.preventDefault();
-    }
-
-    onDrop(event) {
-        var data = event
-            .dataTransfer
-            .getData("text");
-
+    onDragEnd(event) {
         var itemArray = this.props.entries;
-
-        itemArray.push({
-            text: data,
-            key: Date.now()
-        });
+        for (var i = 0; i < itemArray.length; i++) {
+            if (itemArray[i].text === event.target.textContent) {
+                itemArray.splice(i, 1);
+                break;
+            }
+        }
 
         this.setState({items: itemArray});
-        event.preventDefault();
     }
 
     onDragStart(event) {
@@ -40,17 +31,6 @@ export default class TodoItems extends Component {
         event
             .dataTransfer
             .setData("text", event.target.textContent);
-        
-        var itemArray = this.props.entries;
-        for (var i = 0; i < itemArray.length; i++) {
-            if (itemArray[i].text === event.target.textContent) {
-                itemArray.splice(i,1);
-                break;
-            }
-        }
-
-        this.setState({items: itemArray});
-        event.preventDefault();
     }
 
     render() {
@@ -59,22 +39,21 @@ export default class TodoItems extends Component {
         if (todoItems.length > 0) {
             var lstItems = todoItems.map((item) => {
                 return (
-                    <li
-                        key={item.key}
-                        data-key={item.key}
+                    <div key={item.key}
                         className="todo-item"
                         draggable="true"
-                        onDragStart={this.onDragStart}>
+                        onDragStart={this.onDragStart}
+                        onDragEnd={this.onDragEnd}>
                         {item.text}
-                    </li>
+                    </div>
                 );
             });
         }
 
         return (
-            <ul onDragOver={this.allowDrop} onDrop={this.onDrop}>
+            <div>
                 {lstItems}
-            </ul>
+            </div>
         )
     }
 }

@@ -13,6 +13,12 @@ export default class TodoList extends Component {
         this.handleSubmit = this
             .handleSubmit
             .bind(this);
+        this.allowDrop = this
+            .allowDrop
+            .bind(this);
+        this.onDrop = this
+            .onDrop
+            .bind(this);
     }
 
     handleSubmit(event) {
@@ -32,9 +38,28 @@ export default class TodoList extends Component {
         event.preventDefault();
     }
 
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+    onDrop(event) {
+        var data = event
+            .dataTransfer
+            .getData("text");
+
+        var itemArray = this.state.items;
+
+        itemArray.push({
+            text: data,
+            key: Date.now()
+        });
+
+        this.setState({items: itemArray});
+    }
+
     render() {
         return (
-            <div className="todo-list">
+            <div className="todo-list" onDrop={this.onDrop} onDragOver={this.allowDrop}>
                 <h3 className="todo-list-header">{this.props.title}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <TodoItems entries={this.state.items}/>
@@ -43,7 +68,6 @@ export default class TodoList extends Component {
                         placeholder="Enter Task here"
                         ref={(a) => this._inputElement = a}></input>
                     <button className="buttonAdd" type="submit">Add</button>
-
                 </form>
             </div>
         );
